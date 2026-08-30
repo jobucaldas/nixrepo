@@ -1,0 +1,117 @@
+name: AppImage Package Update
+
+on:
+  schedule:
+    - cron: "0 14 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: Update AppImage Packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Update AppImage Packages
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          mapfile -t packages < <(
+            nix eval --json .#packages.x86_64-linux \
+              --apply 'packages: builtins.attrNames packages' |
+              jq -r '.[] | select(. != "default")'
+          )
+
+          for package in "${packages[@]}"; do
+            if ! update_info=$(
+              nix eval --json \
+                ".#packages.x86_64-linux.${package}.passthru.updateInfo" \
+                2>/dev/null
+            ); then
+              echo "Skipping ${package}: no update information."
+              continue
+            fi
+
+            repo=$(jq -r '.repo' <<<"$update_info")
+            asset_regex=$(jq -r '.assetRegex' <<<"$update_info")
+            source_file=$(jq -r '.sourceFile' <<<"$update_info")
+
+            release=$(curl -fsSL \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${repo}/releases/latest")
+
+            version=$(jq -er '.tag_name | sub("^v"; "")' <<<"$release")
+            current_version=$(sed -n \
+              's/^  version = "\([^"]*\)";/\1/p' \
+              "$source_file")
+
+            if [[ "$current_version" == "$version" ]]; then
+              echo "${package} is up to date at ${version}."
+              continue
+            fi
+
+            asset_url=$(jq -er --arg regex "$asset_regex" '
+              [.assets[] | select(.name | test($regex)) | .browser_download_url]
+              | if length == 1 then .[0]
+                elif length == 0 then error("no matching AppImage")
+                else error("multiple matching AppImages")
+                end
+            ' <<<"$release")
+            hash=$(nix store prefetch-file --json "$asset_url" | jq -er '.hash')
+
+            sed -i \
+              -e "0,/^  version = \".*\";$/s//  version = \"${version}\";/" \
+              -e "0,/^  hash = \".*\";$/s||  hash = \"${hash}\";|" \
+              "$source_file"
+
+            echo "Updated ${package}: ${current_version} -> ${version}."
+          done
+
+      - name: Validate AppImage Packages
+        working-directory: .
+        run: |
+          if git diff --quiet -- packages; then
+            echo "No AppImage updates detected."
+            exit 0
+          fi
+
+          nix fmt
+          nix flake check
+
+          mapfile -t packages < <(
+            nix eval --json .#packages.x86_64-linux \
+              --apply 'packages: builtins.attrNames packages' |
+              jq -r '.[] | select(. != "default")'
+          )
+
+          targets=()
+          for package in "${packages[@]}"; do
+            targets+=(".#${package}")
+          done
+
+          nix build --no-link "${targets[@]}"
+
+      - name: Commit and Push Changes
+        working-directory: .
+        run: |
+          if git diff --quiet -- packages; then
+            echo "No changes detected."
+            exit 0
+          fi
+
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add packages
+          git commit -m "[Automated] chore: Update AppImage Packages"
+          git push

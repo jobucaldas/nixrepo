@@ -1,0 +1,11 @@
+.config/
+.cache/
+.env*
+*.pem
+*.p12
+*.key
+*.kdbx
+
+result
+result-*
+.direnv/
