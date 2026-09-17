@@ -8,4 +8,8 @@ in
   helium = callAppImage ./helium.nix;
   unofficial-homestuck-collection = callAppImage ./unofficial-homestuck-collection.nix;
   vacuumtube = callAppImage ./vacuumtube.nix;
+  wispr-flow = callAppImage ./wispr-flow.nix;
+
+  xhisper-local = final.callPackage ./xhisper.nix { engine = "faster-whisper"; };
+  xhisper-whisper-cpp = final.callPackage ./xhisper.nix { engine = "whisper-cpp"; };
 }

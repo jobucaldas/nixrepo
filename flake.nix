@@ -24,6 +24,10 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = [ self.overlays.default ];
+            # wispr-flow is a proprietary AppImage repack; allow just it so
+            # `nix flake check` / `nix build` stay pure. (Dotfiles already
+            # sets allowUnfree globally for NixOS.)
+            config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "wispr-flow" ];
           };
         in
         nixpkgs.lib.genAttrs packageNames (name: pkgs.${name})
@@ -35,11 +39,13 @@
       nixosModules = {
         web-apps = import ./helpers/web-apps.nix;
         gamescope-rx570 = import ./modules/gamescope-rx570.nix;
+        dictation = import ./modules/dictation.nix;
 
         default = {
           imports = [
             self.nixosModules.web-apps
             self.nixosModules.gamescope-rx570
+            self.nixosModules.dictation
           ];
         };
       };
