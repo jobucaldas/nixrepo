@@ -117,5 +117,7 @@ in
     };
   };
 
-  config.environment.systemPackages = [ cfg.browser ] ++ lib.mapAttrsToList mkWebApp cfg.entries;
+  config = lib.mkIf (cfg.entries != { }) {
+    environment.systemPackages = [ cfg.browser ] ++ lib.mapAttrsToList mkWebApp cfg.entries;
+  };
 }

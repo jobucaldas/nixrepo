@@ -106,7 +106,6 @@ in
         environment.systemPackages =
           with pkgs;
           [
-            wl-clipboard
             xclip
             xsel
           ]
