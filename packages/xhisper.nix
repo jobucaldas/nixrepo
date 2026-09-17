@@ -154,11 +154,11 @@ stdenv.mkDerivation rec {
 
     ${lib.optionalString useWhisperCpp ''
       install -Dm755 ${transcribeWhisperCpp} $out/bin/xhisper_transcribe
-      
+
       grep -q '^NV_LIBS=' $out/bin/xhisper || (echo "xhisper.sh: NV_LIBS line gone, update the CUDA cleanup" >&2; exit 1)
       grep -q '^export LD_LIBRARY_PATH=' $out/bin/xhisper || (echo "xhisper.sh: LD_LIBRARY_PATH line gone, update the CUDA cleanup" >&2; exit 1)
       sed -i '/^NV_LIBS=/d; /^export LD_LIBRARY_PATH=/d' $out/bin/xhisper
-      
+
       substituteInPlace $out/bin/xhisper \
         --replace-fail 'python3 "$TRANSCRIPT_SCRIPT"' \
                         '"$TRANSCRIPT_SCRIPT"'
