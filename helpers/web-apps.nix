@@ -9,12 +9,15 @@ let
 
   mkWebApp =
     id: app:
+    let
+      iconStr = if app.icon != null then toString app.icon else cfg.browser.meta.mainProgram or null;
+    in
     pkgs.makeDesktopItem {
       name = id;
       desktopName = app.name;
       genericName = app.genericName;
       comment = app.comment;
-      icon = if app.icon != null then app.icon else cfg.browser.meta.mainProgram or null;
+      icon = iconStr;
       exec = lib.concatStringsSep " " (
         [ (lib.getExe cfg.browser) ] ++ app.extraArgs ++ [ "--app=${app.url}" ]
       );
@@ -64,9 +67,11 @@ in
               };
 
               icon = lib.mkOption {
-                type = lib.types.nullOr lib.types.str;
+                type = lib.types.nullOr (
+                  lib.types.either lib.types.str (lib.types.either lib.types.path lib.types.package)
+                );
                 default = null;
-                description = "Desktop icon name or absolute path; defaults to the browser icon";
+                description = "Desktop icon name or absolute path; accepts theme icon names, store paths (e.g. pkgs.fetchurl result), or packages. Defaults to the browser icon";
               };
 
               extraArgs = lib.mkOption {
