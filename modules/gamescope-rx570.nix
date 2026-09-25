@@ -14,11 +14,17 @@ in
   config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [
       (_final: prev: {
-        gamescope = prev.gamescope.overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [
-            ../patches/gamescope-rx570.patch
-          ];
-        });
+        gamescope = prev.gamescope.overrideAttrs (
+          old:
+          if old.version == "3.16.28" then
+            {
+              patches = (old.patches or [ ]) ++ [
+                ../patches/gamescope-rx570.patch
+              ];
+            }
+          else
+            { }
+        );
       })
     ];
   };
