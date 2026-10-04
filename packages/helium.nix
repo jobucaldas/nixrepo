@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "helium";
-  version = "0.18.2.1";
+  version = "0.18.3.1";
 
   url = "https://github.com/imputnet/helium-linux/releases/download/${version}/${pname}-${version}-x86_64.AppImage";
-  hash = "sha256-qm7EQA3TQT9d1eYzpRQI4HzT894GJlAc1OVc3RNk3iE=";
+  hash = "sha256-xDrhTCq3FVWz/kC9Al3wBPcLxHlalhoaOlaXn6G4uYA=";
 
   passthru.updateInfo = {
     repo = "imputnet/helium-linux";
