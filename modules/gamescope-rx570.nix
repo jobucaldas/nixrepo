@@ -8,10 +8,14 @@ let
 in
 {
   options.nixrepo.gamescope.rx570.enable = lib.mkEnableOption ''
-    the Gamescope modifierless Vulkan compatibility patch for RX 570-class GPUs
+    Gamescope compatibility workarounds for RX 570-class GPUs
   '';
 
   config = lib.mkIf cfg.enable {
+    # Use implicit synchronization for RX 570 sessions.
+    systemd.user.services.gamescope-session.environment.gamescope_drm_debug_disable_explicit_sync =
+      "true";
+
     nixpkgs.overlays = [
       (_final: prev: {
         gamescope = prev.gamescope.overrideAttrs (
