@@ -13,7 +13,9 @@
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
       packageOverlay = import ./packages;
-      packageNames = builtins.attrNames (packageOverlay null null);
+      packageNames = builtins.filter (name: name != "deckyPlugins") (
+        builtins.attrNames (packageOverlay null null)
+      );
     in
     {
       overlays.default = packageOverlay;
@@ -38,12 +40,14 @@
       nixosModules = {
         web-apps = import ./helpers/web-apps.nix;
         gamescope-rx570 = import ./modules/gamescope-rx570.nix;
+        decky-loader = import ./modules/decky-loader.nix;
         dictation = import ./modules/dictation.nix;
 
         default = {
           imports = [
             self.nixosModules.web-apps
             self.nixosModules.gamescope-rx570
+            self.nixosModules.decky-loader
             self.nixosModules.dictation
           ];
         };
