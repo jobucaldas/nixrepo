@@ -41,8 +41,8 @@ Enable the RX 570 Gamescope workaround on affected machines:
 nixrepo.gamescope.rx570.enable = true;
 ```
 
-The module uses implicit synchronization for RX 570 sessions and applies the
-format-selection backport to Gamescope 3.16.28.
+The module uses implicit synchronization and the general Vulkan queue for RX 570
+sessions. It applies the format-selection backport to Gamescope 3.16.28.
 
 Enable offline dictation (defaults to the whisper-cpp backend):
 
