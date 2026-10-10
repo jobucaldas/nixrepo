@@ -12,10 +12,6 @@ in
   '';
 
   config = lib.mkIf cfg.enable {
-    # Use implicit synchronization for RX 570 sessions.
-    systemd.user.services.gamescope-session.environment.gamescope_drm_debug_disable_explicit_sync =
-      "true";
-
     nixpkgs.overlays = [
       (_final: prev: {
         gamescope = prev.gamescope.overrideAttrs (
