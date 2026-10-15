@@ -4,17 +4,14 @@
 }:
 mkAppImage rec {
   pname = "vacuumtube";
-  version = "1.8.2";
+  version = "2.0.0";
 
   url = "https://github.com/shy1132/VacuumTube/releases/download/v${version}/VacuumTube-x86_64.AppImage";
-  hash = "sha256-KWNe6Rq2fmEHP6hvpF67alzpUH/rc6kZfCbL5ZYh038=";
+  hash = "sha256-0/IreFZQWw9feMSMPPSVvCYZagsPpJZzsfFz8BJW/SA=";
 
-  # The upstream AppImage places its scalable icon outside the standard apps
-  # subdirectory, so install a discoverable copy as well.
-  extraInstallCommands = contents: ''
-    install -Dm444 ${contents}/vacuumtube.svg \
-      $out/share/icons/hicolor/scalable/apps/vacuumtube.svg
-  '';
+  # Since 2.0.0 the desktop file uses the application ID; the icon is now
+  # installed in usr/share/icons and copied by mkAppImage.
+  desktopFile = "rocks.shy.VacuumTube.desktop";
 
   passthru.updateInfo = {
     repo = "shy1132/VacuumTube";
