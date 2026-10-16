@@ -2,7 +2,6 @@ final: _prev:
 let
   mkAppImage = final.callPackage ../helpers/appimage.nix { };
   callAppImage = package: final.callPackage package { inherit mkAppImage; };
-  mkDeckyPlugin = final.callPackage ./decky-plugin.nix { };
 in
 {
   crunchyroll-linux = callAppImage ./crunchyroll-linux.nix;
@@ -13,6 +12,4 @@ in
 
   xhisper-local = final.callPackage ./xhisper.nix { engine = "faster-whisper"; };
   xhisper-whisper-cpp = final.callPackage ./xhisper.nix { engine = "whisper-cpp"; };
-
-  deckyPlugins = import ./decky-plugins.nix { inherit mkDeckyPlugin; };
 }
