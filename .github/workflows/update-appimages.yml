@@ -42,16 +42,43 @@ jobs:
               continue
             fi
 
-            repo=$(jq -r '.repo' <<<"$update_info")
-            asset_regex=$(jq -r '.assetRegex' <<<"$update_info")
-            source_file=$(jq -r '.sourceFile' <<<"$update_info")
+            source_file=$(jq -er '.sourceFile' <<<"$update_info")
+            update_type=$(jq -r '.type // "github"' <<<"$update_info")
 
-            release=$(curl -fsSL \
-              -H "Authorization: Bearer ${GH_TOKEN}" \
-              -H "Accept: application/vnd.github+json" \
-              "https://api.github.com/repos/${repo}/releases/latest")
+            case "$update_type" in
+              github)
+                repo=$(jq -er '.repo' <<<"$update_info")
+                asset_regex=$(jq -er '.assetRegex' <<<"$update_info")
+                release=$(curl -fsSL \
+                  -H "Authorization: Bearer ${GH_TOKEN}" \
+                  -H "Accept: application/vnd.github+json" \
+                  "https://api.github.com/repos/${repo}/releases/latest")
+                version=$(jq -er '.tag_name | sub("^v"; "")' <<<"$release")
+                asset_url=$(jq -er --arg regex "$asset_regex" '
+                  [.assets[] | select(.name | test($regex)) | .browser_download_url]
+                  | if length == 1 then .[0]
+                    elif length == 0 then error("no matching AppImage")
+                    else error("multiple matching AppImages")
+                    end
+                ' <<<"$release")
+                ;;
+              redirect)
+                download_url=$(jq -er '.url' <<<"$update_info")
+                version_regex=$(jq -er '.versionRegex' <<<"$update_info")
+                asset_url=$(curl -fsSL --head --output /dev/null \
+                  --write-out '%{url_effective}' "$download_url")
+                decoded_url=$(python3 -c \
+                  'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' \
+                  "$asset_url")
+                version=$(jq -erR --arg regex "$version_regex" \
+                  'capture($regex).version | select(length > 0)' <<<"$decoded_url")
+                ;;
+              *)
+                echo "Unknown update type for ${package}: ${update_type}" >&2
+                exit 1
+                ;;
+            esac
 
-            version=$(jq -er '.tag_name | sub("^v"; "")' <<<"$release")
             current_version=$(sed -n \
               's/^  version = "\([^"]*\)";/\1/p' \
               "$source_file")
@@ -61,13 +88,6 @@ jobs:
               continue
             fi
 
-            asset_url=$(jq -er --arg regex "$asset_regex" '
-              [.assets[] | select(.name | test($regex)) | .browser_download_url]
-              | if length == 1 then .[0]
-                elif length == 0 then error("no matching AppImage")
-                else error("multiple matching AppImages")
-                end
-            ' <<<"$release")
             hash=$(nix store prefetch-file --json "$asset_url" | jq -er '.hash')
 
             sed -i \

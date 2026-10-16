@@ -24,9 +24,14 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = [ self.overlays.default ];
-            # wispr-flow is a proprietary AppImage repack; allow just it so
+            # Allow the proprietary AppImages so
             # `nix flake check` / `nix build` stay pure.
-            config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "wispr-flow" ];
+            config.allowUnfreePredicate =
+              pkg:
+              builtins.elem (nixpkgs.lib.getName pkg) [
+                "epic-games-launcher"
+                "wispr-flow"
+              ];
           };
         in
         nixpkgs.lib.genAttrs packageNames (name: pkgs.${name})

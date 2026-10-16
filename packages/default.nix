@@ -5,6 +5,7 @@ let
 in
 {
   crunchyroll-linux = callAppImage ./crunchyroll-linux.nix;
+  epic-games-launcher = callAppImage ./epic-games-launcher.nix;
   helium = callAppImage ./helium.nix;
   unofficial-homestuck-collection = callAppImage ./unofficial-homestuck-collection.nix;
   vacuumtube = callAppImage ./vacuumtube.nix;

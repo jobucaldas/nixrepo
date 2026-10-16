@@ -5,7 +5,7 @@ Personal Nix packages and reusable NixOS modules.
 ## Flake outputs
 
 - `overlays.default`: adds all packages to `pkgs`
-- `packages.x86_64-linux`: helium, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp
+- `packages.x86_64-linux`: epic-games-launcher, helium, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
 - `nixosModules.gamescope-rx570`: RX 570 Gamescope format-selection backport for 3.16.28
@@ -29,7 +29,7 @@ Apply the overlay and import the modules:
 }
 ```
 
-Packages are then available as `pkgs.helium`, `pkgs.vacuumtube`,
+Packages are then available as `pkgs.epic-games-launcher`, `pkgs.helium`, `pkgs.vacuumtube`,
 `pkgs.crunchyroll-linux`, `pkgs.unofficial-homestuck-collection`,
 `pkgs.wispr-flow`, `pkgs.xhisper-local`, and `pkgs.xhisper-whisper-cpp`.
 
@@ -51,3 +51,12 @@ nixrepo.dictation = {
   backend = "xhisper-whisper-cpp"; # or "xhisper-local" or "wispr-flow"
 };
 ```
+
+## Automatic AppImage updates
+
+The daily `update-appimages.yml` workflow discovers packages through
+`passthru.updateInfo`. GitHub releases use `repo` and `assetRegex`. Redirect-based
+downloads use `type = "redirect"`, `url`, and a `versionRegex` with a named
+`version` capture. The updater follows Epic's installer endpoint, reads the
+version from the decoded download URL, and updates the pinned version and hash.
+All updated packages are built before the workflow commits them.
