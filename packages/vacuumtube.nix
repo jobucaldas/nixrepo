@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "vacuumtube";
-  version = "2.0.0";
+  version = "2.0.1";
 
   url = "https://github.com/shy1132/VacuumTube/releases/download/v${version}/VacuumTube-x86_64.AppImage";
-  hash = "sha256-0/IreFZQWw9feMSMPPSVvCYZagsPpJZzsfFz8BJW/SA=";
+  hash = "sha256-go1v5Hsa3Lgpj4GqfhoLQoQaztvFELXAJg0xD/maQmQ=";
 
   # Since 2.0.0 the desktop file uses the application ID; the icon is now
   # installed in usr/share/icons and copied by mkAppImage.
