@@ -5,7 +5,7 @@ Personal Nix packages and reusable NixOS modules.
 ## Flake outputs
 
 - `overlays.default`: adds all packages to `pkgs`
-- `packages.x86_64-linux`: epic-games-launcher, helium, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp
+- `packages.x86_64-linux`: epic-games-launcher, helium, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
 - `nixosModules.gamescope-rx570`: RX 570 Gamescope format-selection backport for 3.16.28
@@ -31,7 +31,7 @@ Apply the overlay and import the modules:
 
 Packages are then available as `pkgs.epic-games-launcher`, `pkgs.helium`, `pkgs.vacuumtube`,
 `pkgs.crunchyroll-linux`, `pkgs.unofficial-homestuck-collection`,
-`pkgs.wispr-flow`, `pkgs.xhisper-local`, and `pkgs.xhisper-whisper-cpp`.
+`pkgs.wispr-flow`, `pkgs.xhisper-local`, `pkgs.xhisper-whisper-cpp`, and `pkgs.xodus-nexus`.
 
 ## Extras
 
