@@ -5,7 +5,7 @@ Personal Nix packages and reusable NixOS modules.
 ## Flake outputs
 
 - `overlays.default`: adds all packages to `pkgs`
-- `packages.x86_64-linux`: epic-games-launcher, helium, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
+- `packages.x86_64-linux`: epic-games-launcher, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
 - `nixosModules.gamescope-rx570`: RX 570 Gamescope format-selection backport for 3.16.28
@@ -29,9 +29,13 @@ Apply the overlay and import the modules:
 }
 ```
 
-Packages are then available as `pkgs.epic-games-launcher`, `pkgs.helium`, `pkgs.vacuumtube`,
+Packages are then available as `pkgs.epic-games-launcher`, `pkgs.helium`, `pkgs.prime-wine`, `pkgs.vacuumtube`,
 `pkgs.crunchyroll-linux`, `pkgs.unofficial-homestuck-collection`,
 `pkgs.wispr-flow`, `pkgs.xhisper-local`, `pkgs.xhisper-whisper-cpp`, and `pkgs.xodus-nexus`.
+
+Launch Prime Video (`prime-wine`) and select Install on first run to download
+Wine and Brave into your user data directory. Use `prime-wine --manage` to
+update Brave or manage the installation.
 
 ## Extras
 

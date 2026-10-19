@@ -7,6 +7,7 @@ in
   crunchyroll-linux = callAppImage ./crunchyroll-linux.nix;
   epic-games-launcher = callAppImage ./epic-games-launcher.nix;
   helium = callAppImage ./helium.nix;
+  prime-wine = callAppImage ./prime-wine.nix;
   unofficial-homestuck-collection = callAppImage ./unofficial-homestuck-collection.nix;
   vacuumtube = callAppImage ./vacuumtube.nix;
   wispr-flow = callAppImage ./wispr-flow.nix;
