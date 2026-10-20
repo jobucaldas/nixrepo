@@ -14,6 +14,7 @@
   installDesktopFile ? true,
   installIcons ? true,
   extraPkgs ? pkgs: [ ],
+  multiArch ? false,
   extraInstallCommands ? "",
   passthru ? { },
   meta ? { },
@@ -39,6 +40,7 @@ appimageTools.wrapType2 {
     version
     src
     extraPkgs
+    multiArch
     ;
 
   extraInstallCommands =
