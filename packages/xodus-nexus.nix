@@ -46,7 +46,9 @@ mkAppImage rec {
     cat > "$launcher" <<EOF
     #!${runtimeShell}
     export APPIMAGE="$launcher"
-    exec "$target" --no-sandbox "\$@"
+    # Keep Electron's secrets out of the login keyring, which may be locked
+    # when the session starts (for example under gamescope autologin).
+    exec "$target" --no-sandbox --password-store=basic "\$@"
     EOF
     chmod 0555 "$launcher"
   '';
