@@ -1,6 +1,7 @@
 {
   lib,
   mkAppImage,
+  runtimeShell,
 }:
 mkAppImage rec {
   pname = "xodus-nexus";
@@ -21,7 +22,34 @@ mkAppImage rec {
       # The managed runtime's GStreamer video and audio plugins need these.
       libgudev
       libopus
+      # Nexus imports into a running client via /usr/bin/steam inside this FHS.
+      # Forward to the host's Nix wrapper without bundling another Steam client.
+      (writeShellScriptBin "steam" ''
+        for launcher in /run/current-system/sw/bin/steam \
+          "/etc/profiles/per-user/$USER/bin/steam" "$HOME/.nix-profile/bin/steam"; do
+          if [ -x "$launcher" ]; then
+            exec "$launcher" "$@"
+          fi
+        done
+        echo "Steam is not installed in a Nix profile." >&2
+        exit 127
+      '')
     ];
+
+  # Electron needs the persistent entry point for Steam/desktop shortcuts.
+  # The extracted binary bypasses the FHS environment, so advertise this wrapper.
+  # Its non-.AppImage path also keeps updates managed by Nix.
+  extraInstallCommands = ''
+    launcher="$out/bin/xodus-nexus"
+    target="$(readlink -f "$launcher")"
+    rm "$launcher"
+    cat > "$launcher" <<EOF
+    #!${runtimeShell}
+    export APPIMAGE="$launcher"
+    exec "$target" --no-sandbox "\$@"
+    EOF
+    chmod 0555 "$launcher"
+  '';
 
   passthru.updateInfo = {
     repo = "domsvoboda/xodus-nexus";
