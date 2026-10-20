@@ -4,12 +4,12 @@
 }:
 mkAppImage rec {
   pname = "epic-games-launcher";
-  version = "0.97.0+g4f63cc1";
+  version = "0.98.1+gd6c4f03";
 
   url = "https://content-download-egs.distro.on.epicgames.com/Builds/EGLv2/${
     lib.replaceStrings [ "+" ] [ "%2B" ] version
   }/Linux/EpicGamesLauncher-x86_64.AppImage";
-  hash = "sha256-XPhge7Co8pqYhySdSRw8Qeo9Do7QaoZpWqjjtgAO2uY=";
+  hash = "sha256-NV1DNkNd3gc4ijspaUbttQHx8fWeePwVAAPsyzDsaKo=";
 
   extraInstallCommands = _: ''
     substituteInPlace $out/share/applications/${pname}.desktop \
