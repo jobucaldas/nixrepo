@@ -2,11 +2,16 @@
   description = "Personal Nix packages and reusable modules";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.formatelf = {
+    url = "github:Mic92/formatelf/v0.2.2";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs =
     {
       self,
       nixpkgs,
+      formatelf,
     }:
     let
       systems = [ "x86_64-linux" ];
@@ -18,6 +23,7 @@
     {
       overlays = {
         patches = import ./patches;
+        llm-agents-patches = import ./patches/llm-agents.nix { inherit formatelf; };
         default = nixpkgs.lib.composeManyExtensions [
           packageOverlay
           self.overlays.patches
@@ -106,6 +112,8 @@
             '';
         in
         {
+          formatelf = formatelf.packages.${system}.default;
+
           awscli =
             (import nixpkgs {
               inherit system;
