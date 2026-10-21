@@ -6,6 +6,7 @@ Personal Nix packages and reusable NixOS modules.
 
 - `overlays.default`: adds all packages to `pkgs`
 - `overlays.patches`: packaging fixes, also included in `overlays.default`
+- `overlays.llm-agents-patches`: Copilot CLI 1.0.101 binary fix; apply after llm-agents' overlay
 - `packages.x86_64-linux`: epic-games-launcher, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
@@ -50,6 +51,18 @@ It also fixes Mozc's dictionary editor UI class name for newer Qt versions.
 For nixpkgs with AWS CLI 1.44.21, it updates AWS CLI v1 to 1.46.1, which bundles
 compatible SDK dependencies. The `checks.x86_64-linux.awscli` check builds it
 and checks the CLI and offline S3 command model generation.
+
+For `llm-agents`, apply the optional patch overlay after its package overlay:
+
+```nix
+nixpkgs.overlays = [
+  inputs.llm-agents.overlays.shared-nixpkgs
+  inputs.nixrepo.overlays.llm-agents-patches
+];
+```
+
+This uses formatelf 0.2.2 for Copilot CLI 1.0.101 so ELF patching preserves its
+embedded Node application. Copilot's install-time version check stays enabled.
 
 Enable the RX 570 Gamescope workaround on affected machines:
 
