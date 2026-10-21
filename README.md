@@ -46,6 +46,8 @@ kernel package sets without changing the selected kernel. The
 `checks.x86_64-linux.xpad-noone-modules` check builds the combined kernel and
 xpad-noone module tree.
 
+It also fixes Mozc's dictionary editor UI class name for newer Qt versions.
+
 Enable the RX 570 Gamescope workaround on affected machines:
 
 ```nix
