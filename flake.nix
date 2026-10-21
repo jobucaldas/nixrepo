@@ -16,7 +16,13 @@
       packageNames = builtins.attrNames (packageOverlay null null);
     in
     {
-      overlays.default = packageOverlay;
+      overlays = {
+        patches = import ./patches;
+        default = nixpkgs.lib.composeManyExtensions [
+          packageOverlay
+          self.overlays.patches
+        ];
+      };
 
       packages = forAllSystems (
         system:
@@ -100,6 +106,18 @@
             '';
         in
         {
+          xpad-noone-modules =
+            let
+              pkgs = import nixpkgs {
+                inherit system;
+                overlays = [ self.overlays.patches ];
+              };
+            in
+            pkgs.aggregateModules [
+              (nixpkgs.lib.getOutput "modules" pkgs.linuxPackages.kernel)
+              pkgs.linuxPackages.xpad-noone
+            ];
+
           nixos-default = mkNixosEvalCheck "nixos-default" [ self.nixosModules.default ];
 
           dictation-xhisper-whisper-cpp = mkNixosEvalCheck "dictation-xhisper-whisper-cpp" [
