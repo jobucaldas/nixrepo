@@ -106,6 +106,12 @@
             '';
         in
         {
+          awscli =
+            (import nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.patches ];
+            }).awscli;
+
           xpad-noone-modules =
             let
               pkgs = import nixpkgs {

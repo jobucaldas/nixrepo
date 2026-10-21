@@ -47,6 +47,9 @@ kernel package sets without changing the selected kernel. The
 xpad-noone module tree.
 
 It also fixes Mozc's dictionary editor UI class name for newer Qt versions.
+For nixpkgs with AWS CLI 1.44.21, it updates AWS CLI v1 to 1.46.1, which bundles
+compatible SDK dependencies. The `checks.x86_64-linux.awscli` check builds it
+and checks the CLI and offline S3 command model generation.
 
 Enable the RX 570 Gamescope workaround on affected machines:
 
