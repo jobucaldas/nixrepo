@@ -5,6 +5,7 @@ Personal Nix packages and reusable NixOS modules.
 ## Flake outputs
 
 - `overlays.default`: adds all packages to `pkgs`
+- `overlays.patches`: packaging fixes, also included in `overlays.default`
 - `packages.x86_64-linux`: epic-games-launcher, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
@@ -38,6 +39,12 @@ Wine and Brave into your user data directory. Use `prime-wine --manage` to
 update Brave or manage the installation.
 
 ## Extras
+
+The patches overlay fixes xpad-noone's module installation for the kernel
+signature and certificate requirements in newer nixpkgs. It applies to all
+kernel package sets without changing the selected kernel. The
+`checks.x86_64-linux.xpad-noone-modules` check builds the combined kernel and
+xpad-noone module tree.
 
 Enable the RX 570 Gamescope workaround on affected machines:
 
