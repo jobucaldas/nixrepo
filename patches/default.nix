@@ -1,4 +1,8 @@
 final: prev: {
+  mozc = prev.mozc.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [ ./mozc-qt6-class-name.patch ];
+  });
+
   kernelPackagesExtensions = prev.kernelPackagesExtensions ++ [
     (kernelFinal: kernelPrev: {
       xpad-noone = kernelPrev.xpad-noone.overrideAttrs (
