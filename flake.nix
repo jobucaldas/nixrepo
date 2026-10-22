@@ -56,12 +56,14 @@
         web-apps = import ./helpers/web-apps.nix;
         gamescope-rx570 = import ./modules/gamescope-rx570.nix;
         dictation = import ./modules/dictation.nix;
+        steam-runtime = import ./patches/steam-runtime.nix;
 
         default = {
           imports = [
             self.nixosModules.web-apps
             self.nixosModules.gamescope-rx570
             self.nixosModules.dictation
+            self.nixosModules.steam-runtime
           ];
         };
       };
