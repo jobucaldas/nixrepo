@@ -3,7 +3,7 @@
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   inputs.formatelf = {
-    url = "github:Mic92/formatelf/v0.2.2";
+    url = "github:Mic92/formatelf/v0.2.1";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
