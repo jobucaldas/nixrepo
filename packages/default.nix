@@ -6,7 +6,6 @@ in
 {
   crunchyroll-linux = callAppImage ./crunchyroll-linux.nix;
   epic-games-launcher = callAppImage ./epic-games-launcher.nix;
-  openbot = callAppImage ./openbot.nix;
   helium = callAppImage ./helium.nix;
   prime-wine = callAppImage ./prime-wine.nix;
   unofficial-homestuck-collection = callAppImage ./unofficial-homestuck-collection.nix;
