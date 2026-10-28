@@ -41,6 +41,7 @@
             config.allowUnfreePredicate =
               pkg:
               builtins.elem (nixpkgs.lib.getName pkg) [
+                "openbot"
                 "epic-games-launcher"
                 "wispr-flow"
               ];
