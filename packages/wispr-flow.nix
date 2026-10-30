@@ -3,7 +3,7 @@
   mkAppImage,
 }:
 let
-  version = "1.0.4+wispr1.6.957";
+  version = "1.0.5+wispr1.6.1209";
   parts = builtins.match "([^+]+)\\+wispr(.+)" version;
   portVersion = builtins.elemAt parts 0;
   appVersion = builtins.elemAt parts 1;
@@ -13,7 +13,7 @@ mkAppImage {
   inherit version;
 
   url = "https://github.com/wispr-flow-linux/wispr-flow-linux/releases/download/v${version}/wispr-flow-${appVersion}-${portVersion}-x86_64.AppImage";
-  hash = "sha256-2jeeMDWVnkadE5lyjwb1ThKplYoxp5P/GgZ39OEtiMU=";
+  hash = "sha256-pPXPVkO3i2Adqdmny7sbyDpchl6EvGAojby+xOSDz8Q=";
 
   desktopFile = "ai.wisprflow.WisprFlow.desktop";
   desktopExec = "wispr-flow";
