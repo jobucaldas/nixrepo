@@ -1,12 +1,12 @@
 { lib, mkAppImage }:
 let
-  version = "0.54.0";
+  version = "0.56.0";
 in
 mkAppImage {
   pname = "openbot";
   inherit version;
   url = "https://github.com/nightly-labs/openbot/releases/download/v${version}/OpenBot-${version}-x86_64.AppImage";
-  hash = "sha256-ikIY9UNjCU4Ga6IRA6OEsK88JwsOq1mi5kXnfC+1nYA=";
+  hash = "sha256-1bUOoYotvLu0OnalDws8gVVEF6A1bFQRD4McI7dWNk8=";
 
   passthru.updateInfo = {
     repo = "nightly-labs/openbot";
