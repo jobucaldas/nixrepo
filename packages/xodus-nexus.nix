@@ -5,10 +5,10 @@
 }:
 mkAppImage rec {
   pname = "xodus-nexus";
-  version = "0.4.1";
+  version = "0.4.2";
 
   url = "https://github.com/domsvoboda/xodus-nexus/releases/download/v${version}/Xodus-Nexus-${version}-x86_64.AppImage";
-  hash = "sha256-O6XM5qPYS+w9eyKGz4eIhvC43Tpq6nY1q+N2oCN9vU0=";
+  hash = "sha256-amKE0Mknu0NG6NzLdBYbCIwzLj0Gc9K+eG1Z7YX5Ltk=";
 
   # The managed Wine runtime also needs the 32-bit Linux loader and libraries.
   multiArch = true;
