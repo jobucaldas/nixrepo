@@ -7,7 +7,7 @@ Personal Nix packages and reusable NixOS modules.
 - `overlays.default`: adds all packages to `pkgs`
 - `overlays.patches`: packaging fixes, also included in `overlays.default`
 - `overlays.llm-agents-patches`: Copilot CLI 1.0.101 binary fix; apply after llm-agents' overlay
-- `packages.x86_64-linux`: epic-games-launcher, openbot, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
+- `packages.x86_64-linux`: epic-games-launcher, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
 - `nixosModules.gamescope-rx570`: RX 570 Gamescope format-selection backport for 3.16.28
@@ -32,7 +32,7 @@ Apply the overlay and import the modules:
 ```
 
 Packages are then available as `pkgs.epic-games-launcher`, `pkgs.helium`, `pkgs.prime-wine`, `pkgs.vacuumtube`,
-`pkgs.openbot`, `pkgs.crunchyroll-linux`, `pkgs.unofficial-homestuck-collection`,
+`pkgs.crunchyroll-linux`, `pkgs.unofficial-homestuck-collection`,
 `pkgs.wispr-flow`, `pkgs.xhisper-local`, `pkgs.xhisper-whisper-cpp`, and `pkgs.xodus-nexus`.
 
 Launch Prime Video (`prime-wine`) and select Install on first run to download
