@@ -7,7 +7,7 @@ Personal Nix packages and reusable NixOS modules.
 - `overlays.default`: adds all packages to `pkgs`
 - `overlays.patches`: packaging fixes, also included in `overlays.default`
 - `overlays.llm-agents-patches`: Copilot CLI 1.0.101 binary fix; apply after llm-agents' overlay
-- `packages.x86_64-linux`: epic-games-launcher, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus
+- `packages.x86_64-linux`: epic-games-launcher, helium, prime-wine, vacuumtube, crunchyroll-linux, unofficial-homestuck-collection, wispr-flow, xhisper-local, xhisper-whisper-cpp, xodus-nexus, and the ArtCraft apps (cadcraft, craft-anything, deckcraft, designcraft, effectcraft, figcraft, filmcraft, gridcraft, lightcraft, materialcraft, pdfcraft, photocraft, soundcraft, texturecraft, vectorcraft, wordcraft)
 - `nixosModules.default`: imports all reusable modules
 - `nixosModules.web-apps`: reusable declarative web-app desktop entries
 - `nixosModules.gamescope-rx570`: RX 570 Gamescope format-selection backport for 3.16.28
