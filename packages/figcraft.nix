@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.figcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/figcraft";
     assetRegex = "^figcraft-.*-linux-x86_64\\.AppImage$";

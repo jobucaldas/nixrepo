@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.craft-anything.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/craft-anything";
     assetRegex = "^craft-anything-.*-linux-x86_64\\.AppImage$";

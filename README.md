@@ -39,6 +39,10 @@ Launch Prime Video (`prime-wine`) and select Install on first run to download
 Wine and Brave into your user data directory. Use `prime-wine --manage` to
 update Brave or manage the installation.
 
+The ArtCraft packages install the headless CLI next to the desktop app, so
+`pkgs.figcraft` provides both `figcraft` and `figcraft-cli`. Each CLI exposes
+`mcp` for agent integrations, for example `figcraft-cli mcp`.
+
 ## Extras
 
 The patches overlay fixes xpad-noone's module installation for the kernel

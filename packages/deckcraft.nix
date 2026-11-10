@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.deckcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/deckcraft";
     assetRegex = "^deckcraft-.*-linux-x86_64\\.AppImage$";

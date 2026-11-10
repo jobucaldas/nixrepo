@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.soundcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/soundcraft";
     assetRegex = "^soundcraft-.*-linux-x86_64\\.AppImage$";

@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.gridcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/gridcraft";
     assetRegex = "^gridcraft-.*-linux-x86_64\\.AppImage$";

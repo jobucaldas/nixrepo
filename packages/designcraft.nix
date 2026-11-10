@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.designcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/designcraft";
     assetRegex = "^designcraft-.*-linux-x86_64\\.AppImage$";

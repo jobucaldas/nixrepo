@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.pdfcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/pdfcraft";
     assetRegex = "^pdfcraft-.*-linux-x86_64\\.AppImage$";

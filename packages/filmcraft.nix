@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.filmcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/filmcraft";
     assetRegex = "^filmcraft-.*-linux-x86_64\\.AppImage$";

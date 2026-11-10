@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.cadcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/cadcraft";
     assetRegex = "^cadcraft-.*-linux-x86_64\\.AppImage$";

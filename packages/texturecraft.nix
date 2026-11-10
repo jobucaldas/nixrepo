@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.texturecraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/texturecraft";
     assetRegex = "^texturecraft-.*-linux-x86_64\\.AppImage$";

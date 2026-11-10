@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.vectorcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/vectorcraft";
     assetRegex = "^vectorcraft-.*-linux-x86_64\\.AppImage$";

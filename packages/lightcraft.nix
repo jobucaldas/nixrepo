@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.lightcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/lightcraft";
     assetRegex = "^lightcraft-.*-linux-x86_64\\.AppImage$";

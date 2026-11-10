@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.photocraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/photocraft";
     assetRegex = "^photocraft-.*-linux-x86_64\\.AppImage$";

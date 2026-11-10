@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.effectcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/effectcraft";
     assetRegex = "^effectcraft-.*-linux-x86_64\\.AppImage$";

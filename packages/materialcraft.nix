@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.materialcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/materialcraft";
     assetRegex = "^materialcraft-.*-linux-x86_64\\.AppImage$";

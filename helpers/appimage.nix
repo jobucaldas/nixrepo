@@ -1,8 +1,10 @@
 {
   appimageTools,
+  autoPatchelfHook,
   desktop-file-utils,
   fetchurl,
   lib,
+  stdenv,
 }:
 {
   pname,
@@ -13,6 +15,8 @@
   desktopExec ? pname,
   installDesktopFile ? true,
   installIcons ? true,
+  installCli ? false,
+  cliBinary ? "${pname}-cli",
   extraPkgs ? pkgs: [ ],
   multiArch ? false,
   extraInstallCommands ? "",
@@ -26,6 +30,21 @@ let
 
   contents = appimageTools.extract {
     inherit pname version src;
+  };
+
+  # The bundled headless CLI links against the host loader and the system
+  # libc, so repoint it at Nixpkgs before installing it next to the app.
+  cli = stdenv.mkDerivation {
+    pname = "${pname}-cli";
+    inherit version;
+
+    dontUnpack = true;
+    nativeBuildInputs = [ autoPatchelfHook ];
+    buildInputs = [ stdenv.cc.cc.lib ];
+
+    installPhase = ''
+      install -Dm755 ${contents}/usr/bin/${cliBinary} $out/bin/${cliBinary}
+    '';
   };
 
   additionalInstallCommands =
@@ -58,6 +77,9 @@ appimageTools.wrapType2 {
       fi
     ''
     + additionalInstallCommands
+    + lib.optionalString installCli ''
+      install -Dm755 ${cli}/bin/${cliBinary} $out/bin/${cliBinary}
+    ''
     + lib.optionalString installDesktopFile ''
       ${desktop-file-utils}/bin/desktop-file-validate \
         $out/share/applications/${pname}.desktop

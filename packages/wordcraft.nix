@@ -11,6 +11,8 @@ mkAppImage rec {
 
   desktopFile = "ai.storyteller.wordcraft.desktop";
 
+  installCli = true;
+
   passthru.updateInfo = {
     repo = "storytold/wordcraft";
     assetRegex = "^wordcraft-.*-linux-x86_64\\.AppImage$";
