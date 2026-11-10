@@ -5,10 +5,10 @@
 }:
 mkAppImage rec {
   pname = "prime-wine";
-  version = "0.1.0";
+  version = "0.1.1";
 
   url = "https://github.com/NelloKudo/prime-wine/releases/download/v${version}/PrimeWine-x86_64.AppImage";
-  hash = "sha256-qsXGAtNURucioWPAiVzOV2zhA1oNJi4aqWf4muRy3+g=";
+  hash = "sha256-HVUGgX22HOFT/eEvwLV/1e1yTKi+cD3t7WVfdl+ezGQ=";
 
   extraPkgs =
     pkgs: with pkgs; [
