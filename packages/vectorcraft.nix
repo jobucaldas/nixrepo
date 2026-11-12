@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "vectorcraft";
-  version = "0.23.0";
+  version = "0.24.1";
 
   url = "https://github.com/storytold/vectorcraft/releases/download/v${version}/vectorcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-ihMPRI+o3/CiedzvylYin1cCyzQRIyY0NtWHxFviqOQ=";
+  hash = "sha256-vc5+gumB+fTtC/JfpvJeb+T6sn6JZB5vlIiZ4BsTpRQ=";
 
   desktopFile = "ai.storyteller.vectorcraft.desktop";
 

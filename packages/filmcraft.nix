@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "filmcraft";
-  version = "0.19.0";
+  version = "0.20.1";
 
   url = "https://github.com/storytold/filmcraft/releases/download/v${version}/filmcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-LwnP9pY7VbwhYBWAYK+N4iaw7I/CI6GYsQFFpY4jj+g=";
+  hash = "sha256-SiWuyy6UgbZec1NSi8qeSoxTiN1V8Uhv/mRQLgi9+gI=";
 
   desktopFile = "ai.storyteller.filmcraft.desktop";
 

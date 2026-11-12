@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "effectcraft";
-  version = "0.23.1";
+  version = "0.24.1";
 
   url = "https://github.com/storytold/effectcraft/releases/download/v${version}/effectcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-eQVIXX6RmZoMGey6RH0N/RHBO92xMr35zKZc2LYGcfs=";
+  hash = "sha256-n4oWz3QUfJ4qw7ZfpvW+lqPhDq2S3fCNVE9dOZCtZNw=";
 
   desktopFile = "ai.storyteller.effectcraft.desktop";
 

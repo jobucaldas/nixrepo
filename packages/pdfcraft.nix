@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "pdfcraft";
-  version = "0.20.0";
+  version = "0.21.1";
 
   url = "https://github.com/storytold/pdfcraft/releases/download/v${version}/pdfcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-An5iKZuCNTYANz5sp0xEEhPvVAbnDSf38a734Fp4h40=";
+  hash = "sha256-cwJ2zamt2z1I8mxgJobRj8W8Dr42CmCi9SLXDP1CjSE=";
 
   desktopFile = "ai.storyteller.pdfcraft.desktop";
 

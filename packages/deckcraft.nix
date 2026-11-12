@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "deckcraft";
-  version = "0.17.0";
+  version = "0.18.1";
 
   url = "https://github.com/storytold/deckcraft/releases/download/v${version}/deckcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-oD0vCRpUHDKxT09n3olynShpjcKT8fmmIvVBnWQ9pZc=";
+  hash = "sha256-aN+fBA0/bEzkqQSq3sYzlh+hmSSPChqjZvpkWXrgmGc=";
 
   desktopFile = "ai.storyteller.deckcraft.desktop";
 

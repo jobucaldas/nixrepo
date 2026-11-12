@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "materialcraft";
-  version = "0.3.0";
+  version = "0.4.1";
 
   url = "https://github.com/storytold/materialcraft/releases/download/v${version}/materialcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-rKIn8H0AR7xi3tj83mPdzDwQUZYPWTwCkZTW6d1Kaz0=";
+  hash = "sha256-1R++QDSoIgR0UHIi9k2AHiZknIEzs+e0WPPpdYwItqE=";
 
   desktopFile = "ai.storyteller.materialcraft.desktop";
 

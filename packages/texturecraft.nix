@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "texturecraft";
-  version = "0.5.0";
+  version = "0.6.1";
 
   url = "https://github.com/storytold/texturecraft/releases/download/v${version}/texturecraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-so8Kf2ldQfWAn6UbhYjXG5k388X1hi7GEJB9CW7lzQA=";
+  hash = "sha256-kEdgAW/TdL8J/RtKPIQBy8fmvDy8DUQn43S5v4ExbKY=";
 
   desktopFile = "ai.storyteller.texturecraft.desktop";
 

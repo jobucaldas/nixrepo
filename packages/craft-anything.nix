@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "craft-anything";
-  version = "0.6.0";
+  version = "0.6.1";
 
   url = "https://github.com/storytold/craft-anything/releases/download/v${version}/craft-anything-${version}-linux-x86_64.AppImage";
-  hash = "sha256-mswr764Dgd7p3OvSVbzcdZKxafTvR3nC4tQj8Xz2vzk=";
+  hash = "sha256-fq3eHXSrQsyDiGL+P4MePPPJ+mul4r8E4oJLvEcUYTQ=";
 
   desktopFile = "ai.storyteller.craft-anything.desktop";
 

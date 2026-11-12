@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "cadcraft";
-  version = "0.19.0";
+  version = "0.20.1";
 
   url = "https://github.com/storytold/cadcraft/releases/download/v${version}/cadcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-AZ0KSroVUPr5FiTo0686344n/uGZdXm1T5hfaTOVuvk=";
+  hash = "sha256-56XSRFAP5FzKv6hcYywl7NofsDeZwxjZrVQfZbFQ548=";
 
   desktopFile = "ai.storyteller.cadcraft.desktop";
 

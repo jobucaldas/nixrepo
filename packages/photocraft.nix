@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "photocraft";
-  version = "0.22.0";
+  version = "0.23.1";
 
   url = "https://github.com/storytold/photocraft/releases/download/v${version}/photocraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-zuk05sOMD/f4zX7gNpQSi+Bb4Tf8QwEYDi9xbn0qH58=";
+  hash = "sha256-BXR7PlJ+HgoMHeOZcDYc84yPyn6NPjYB7yCC+w5t0X8=";
 
   desktopFile = "ai.storyteller.photocraft.desktop";
 

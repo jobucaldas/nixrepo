@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "figcraft";
-  version = "0.17.0";
+  version = "0.18.1";
 
   url = "https://github.com/storytold/figcraft/releases/download/v${version}/figcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-p0nZ+AdMvS3H0EoW1HJiABolKDkfoVO9bFxOT4TI5BQ=";
+  hash = "sha256-lYaULdYxuWtMVSKYjp6AITkHuAIv+vvKYko/wRrnqek=";
 
   desktopFile = "ai.storyteller.figcraft.desktop";
 

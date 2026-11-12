@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "lightcraft";
-  version = "0.20.0";
+  version = "0.21.1";
 
   url = "https://github.com/storytold/lightcraft/releases/download/v${version}/lightcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-Zr4ekYXVb2AIbpp8AZBk3SONlVMcE8DhyDpSf863PhA=";
+  hash = "sha256-xCEtoid3oAANnrZshbeGXp6ZEfR6YCB9eFK3wGOtqKk=";
 
   desktopFile = "ai.storyteller.lightcraft.desktop";
 

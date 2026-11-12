@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "gridcraft";
-  version = "0.18.0";
+  version = "0.19.1";
 
   url = "https://github.com/storytold/gridcraft/releases/download/v${version}/gridcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-/eL5mCrHaQJlIctvcQ7Ja02RmxY0rWixWyub9iRnAgw=";
+  hash = "sha256-WxzhCtbHotOJJJ39JZAQAUqF/OGqQsYn/EzaVxZx4iE=";
 
   desktopFile = "ai.storyteller.gridcraft.desktop";
 

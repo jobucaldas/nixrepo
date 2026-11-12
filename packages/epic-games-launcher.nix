@@ -13,8 +13,8 @@
 }:
 let
   pname = "epic-games-launcher";
-  version = "0.114.0+g04485d6";
-  hash = "sha256-C9Pj7CdsGvXIZwMlxXtwKSkPtIEd4Hhb/jYqMWE/lsc=";
+  version = "0.115.0+gd6d2ef8";
+  hash = "sha256-YYrcC8x3i7sfSXOBENXCGehh7Uy3rbcrJPtVAxVqbWM=";
 
   src = fetchurl {
     url = "https://content-download-egs.distro.on.epicgames.com/Builds/EGLv2/${

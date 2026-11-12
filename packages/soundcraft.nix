@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "soundcraft";
-  version = "0.19.0";
+  version = "0.20.1";
 
   url = "https://github.com/storytold/soundcraft/releases/download/v${version}/soundcraft-${version}-linux-x86_64.AppImage";
-  hash = "sha256-qt7XTk8TLAM6zBIjx3anTlmnUdyQiEG0wxVy44k5GY8=";
+  hash = "sha256-TbtAKkE+wqUxA7n6d9Y1bm/usIbZSXXJXmNcdLQ02vg=";
 
   desktopFile = "ai.storyteller.soundcraft.desktop";
 
