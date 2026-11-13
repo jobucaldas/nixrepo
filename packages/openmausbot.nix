@@ -4,10 +4,10 @@
 }:
 mkAppImage rec {
   pname = "openmausbot";
-  version = "0.1.154";
+  version = "0.1.155";
 
   url = "https://github.com/milind-soni/OpenMausBot/releases/download/v${version}/OpenMausBot-${version}-x86_64.AppImage";
-  hash = "sha256-FMB4fECbpa3zCLEFX5D/z4fnNh3WKIhlSpQzJBcIW9Y=";
+  hash = "sha256-f45ot/lY+5ExwsYJNeoqfZPiwAvdlukdXhcGkWyRzEE=";
 
   desktopFile = "com.openmausbot.app.desktop";
 
